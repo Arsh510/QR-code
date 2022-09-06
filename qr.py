@@ -1,16 +1,13 @@
-# import numpy as np
 import streamlit as st
-# import PIL
 from PIL import Image
 import qrcode
 
 st.title("QR code Genator")
-# st.text("Aim of this project is to whether a candidate is qualified for a role based his \n or her education, experience, and other information captured on their resume.")
+st.text("Aim of this project is to whether a candidate is enter the any text to generate \nthe QR code.")
 
-text = st.text_input('Enter the Text','Enter the Text')
+text = st.text_input('Enter the Text')
 
-
-click = st.button("Genorate")
+click = st.button("Click hear to Generate")
 
 
 if click:
@@ -21,3 +18,10 @@ if click:
     image = img.save("QR.png")
     output = Image.open("QR.png")
     st.image(output)
+    with open("QR.png", "rb") as file:
+        btn = st.download_button(
+            label="Download image",
+            data=file,
+            file_name="QR.png",
+            mime="image/png"
+        )
